@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WMS Premium - Warehouse Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800">
+
+  <!-- LOGIN SECTION -->
+  <div id="loginPage" class="login-container">
+    <div class="glass-card login-card">
+      <div class="brand-header">
+        <div class="logo-icon"><i data-lucide="box"></i></div>
+        <h2>LOGISTIX WMS</h2>
+        <p>Enterprise Warehouse System</p>
+      </div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Username / Email</label>
+          <input type="text" id="loginUser" class="input-control" placeholder="admin" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPass" class="input-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" id="btnLogin" class="btn btn-primary w-full">
+          <span>Masuk Ke Sistem</span>
+        </button>
+      </form>
+      <div id="loginAlert" class="alert hidden"></div>
+    </div>
+  </div>
+
+  <!-- MAIN APP DASHBOARD LAYOUT -->
+  <div id="appPage" class="app-container hidden">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <i data-lucide="layers"></i>
+        <span>LOGISTIX WMS</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" onclick="switchPage('dashboard')"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+        <a href="#" class="nav-item" onclick="switchPage('masterBarang')"><i data-lucide="package"></i> Master Barang</a>
+        <a href="#" class="nav-item" onclick="switchPage('barangMasuk')"><i data-lucide="arrow-down-left"></i> Barang Masuk</a>
+        <a href="#" class="nav-item" onclick="switchPage('barangKeluar')"><i data-lucide="arrow-up-right"></i> Barang Keluar</a>
+        <a href="#" class="nav-item" onclick="switchPage('stokGudang')"><i data-lucide="archive"></i> Stok Gudang</a>
+        <a href="#" class="nav-item" onclick="logout()"><i data-lucide="log-out"></i> Logout</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+      <!-- HEADER -->
+      <header class="header-bar">
+        <div class="header-title"><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="header-user">
+          <span id="userInfo">Admin (Role: Admin)</span>
+        </div>
+      </header>
+
+      <!-- VIEW HASIL SWITCH PAGE -->
+      <div class="content-body">
+        
+        <!-- MODULE: DASHBOARD -->
+        <section id="viewDashboard" class="page-view">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-label">Total SKU</span>
+              <h3 id="statTotalSKU">0</h3>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Total Stok</span>
+              <h3 id="statTotalStok">0</h3>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Barang Masuk</span>
+              <h3 id="statBarangMasuk">0</h3>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Barang Keluar</span>
+              <h3 id="statBarangKeluar">0</h3>
+            </div>
+          </div>
+          <div class="chart-container glass-card">
+            <canvas id="movementChart"></canvas>
+          </div>
+        </section>
+
+        <!-- MODULE: MASTER BARANG -->
+        <section id="viewMasterBarang" class="page-view hidden">
+          <div class="action-bar">
+            <button class="btn btn-primary" onclick="openModalBarang()"><i data-lucide="plus"></i> Tambah Barang</button>
+          </div>
+          <div class="glass-card table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>SKU</th>
+                  <th>Nama Barang</th>
+                  <th>Kategori</th>
+                  <th>Lokasi Rak</th>
+                  <th>Stok Min</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="tableMasterBarang">
+                <!-- Loaded via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- MODULE: BARANG MASUK -->
+        <section id="viewBarangMasuk" class="page-view hidden">
+          <div class="glass-card form-container">
+            <h3>Form Transaksi Barang Masuk</h3>
+            <form id="formBarangMasuk">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Tanggal</label>
+                  <input type="date" id="inTanggal" class="input-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Supplier</label>
+                  <input type="text" id="inSupplier" class="input-control" placeholder="PT Supplier Jaya" required>
+                </div>
+                <div class="form-group">
+                  <label>SKU Barang</label>
+                  <input type="text" id="inSKU" class="input-control" placeholder="SKU-001" required>
+                </div>
+                <div class="form-group">
+                  <label>Nama Barang</label>
+                  <input type="text" id="inNama" class="input-control" placeholder="Kardus Medium" required>
+                </div>
+                <div class="form-group">
+                  <label>Jumlah</label>
+                  <input type="number" id="inJumlah" class="input-control" min="1" required>
+                </div>
+                <div class="form-group">
+                  <label>Lokasi Simpan</label>
+                  <input type="text" id="inLokasi" class="input-control" placeholder="A-01-01" required>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Simpan Barang Masuk</button>
+            </form>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
