@@ -34,12 +34,7 @@
       --shadow-hover-3d: 0 25px 30px -5px rgba(37, 99, 235, 0.15), 0 12px 15px -6px rgba(124, 58, 237, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
 
     body {
       background-color: var(--bg-main);
@@ -48,9 +43,7 @@
       overflow-x: hidden;
     }
 
-    /* =========================================================
-       1. ANIMATED GRADIENT 3D LOGIN PAGE
-       ========================================================= */
+    /* 1. ANIMATED GRADIENT 3D LOGIN PAGE */
     .login-container {
       height: 100vh;
       width: 100vw;
@@ -69,7 +62,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Glassmorphism 3D Card */
     .glass-login-card {
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(20px);
@@ -80,348 +72,172 @@
       width: 100%;
       max-width: 440px;
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-      transform: translateY(0);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.4s ease;
     }
 
-    .glass-login-card:hover {
-      transform: translateY(-5px) scale(1.01);
-      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 1);
-    }
-
-    .brand-header {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-
+    .brand-header { text-align: center; margin-bottom: 28px; }
     .brand-icon-3d {
-      width: 64px;
-      height: 64px;
+      width: 64px; height: 64px;
       background: linear-gradient(135deg, var(--royal-blue), var(--purple));
-      border-radius: 18px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.35);
-      margin-bottom: 12px;
+      border-radius: 18px; display: inline-flex; align-items: center; justify-content: center;
+      color: white; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.35); margin-bottom: 12px;
     }
 
-    .brand-header h2 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      color: var(--navy-blue);
-    }
+    .brand-header h2 { font-size: 1.6rem; font-weight: 800; color: var(--navy-blue); }
+    .brand-header p { font-size: 0.88rem; color: #64748B; margin-top: 4px; font-weight: 500; }
 
-    .brand-header p {
-      font-size: 0.88rem;
-      color: #64748B;
-      margin-top: 4px;
-      font-weight: 500;
-    }
-
-    /* Form Controls */
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: #334155;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 700; color: #334155; margin-bottom: 8px; text-transform: uppercase; }
 
     .input-control {
-      width: 100%;
-      padding: 14px 18px;
-      border-radius: 12px;
-      border: 1.5px solid #CBD5E1;
-      background: rgba(255, 255, 255, 0.9);
-      font-size: 0.95rem;
-      color: var(--navy-blue);
-      outline: none;
-      transition: all 0.25s ease;
+      width: 100%; padding: 14px 18px; border-radius: 12px;
+      border: 1.5px solid #CBD5E1; background: rgba(255, 255, 255, 0.9);
+      font-size: 0.95rem; color: var(--navy-blue); outline: none; transition: all 0.25s ease;
     }
 
     .input-control:focus {
-      border-color: var(--royal-blue);
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
-      background: #FFFFFF;
+      border-color: var(--royal-blue); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); background: #FFFFFF;
     }
 
-    /* Buttons with 3D Effect */
     .btn {
-      width: 100%;
-      padding: 14px 24px;
-      border-radius: 12px;
-      border: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 12px 24px; border-radius: 12px; border: none; font-weight: 700; font-size: 0.92rem;
+      cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--royal-blue), #1D4ED8);
-      color: white;
-      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
-    }
+    .btn-primary { background: linear-gradient(135deg, var(--royal-blue), #1D4ED8); color: white; box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 20px rgba(37, 99, 235, 0.4); }
+    
+    .btn-success { background: linear-gradient(135deg, var(--success), #059669); color: white; box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3); }
+    .btn-danger { background: linear-gradient(135deg, var(--danger), #DC2626); color: white; box-shadow: 0 8px 16px rgba(239, 68, 68, 0.3); }
 
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #1D4ED8, #1E40AF);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 20px rgba(37, 99, 235, 0.4);
-    }
+    /* 2. MAIN DASHBOARD SAAS LAYOUT */
+    .app-container { display: flex; height: 100vh; overflow: hidden; background: #F1F5F9; }
 
-    .btn-primary:active {
-      transform: translateY(0);
-    }
-
-    /* =========================================================
-       2. MAIN DASHBOARD SAAS LAYOUT
-       ========================================================= */
-    .app-container {
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-      background: #F1F5F9;
-    }
-
-    /* Sidebar */
     .sidebar {
-      width: 270px;
-      background: var(--navy-blue);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 4px 0 25px rgba(0,0,0,0.05);
-      z-index: 20;
+      width: 270px; background: var(--navy-blue); color: white;
+      display: flex; flex-direction: column; box-shadow: 4px 0 25px rgba(0,0,0,0.05); z-index: 20;
     }
 
     .sidebar-brand {
-      padding: 28px 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      font-size: 1.15rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      letter-spacing: -0.5px;
+      padding: 28px 24px; display: flex; align-items: center; gap: 12px;
+      font-weight: 800; font-size: 1.15rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .sidebar-nav {
-      padding: 20px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex: 1;
-      overflow-y: auto;
-    }
-
+    .sidebar-nav { padding: 20px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; overflow-y: auto; }
     .nav-item {
-      color: #94A3B8;
-      text-decoration: none;
-      padding: 12px 18px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      transition: all 0.25s ease;
+      color: #94A3B8; text-decoration: none; padding: 12px 18px; border-radius: 12px;
+      display: flex; align-items: center; gap: 12px; font-size: 0.92rem; font-weight: 600; transition: all 0.25s ease;
     }
-
-    .nav-item:hover {
-      color: white;
-      background: rgba(255, 255, 255, 0.06);
-    }
-
+    .nav-item:hover { color: white; background: rgba(255, 255, 255, 0.06); }
     .nav-item.active {
-      color: white;
-      background: linear-gradient(135deg, var(--royal-blue), var(--purple));
-      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+      color: white; background: linear-gradient(135deg, var(--royal-blue), var(--purple)); box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
     }
 
-    /* Main Area */
-    .main-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-    }
-
+    .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
     .header-bar {
-      height: 76px;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px);
-      padding: 0 36px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border-color);
-      sticky: top;
-      z-index: 10;
+      height: 76px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px);
+      padding: 0 36px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color);
     }
 
-    .header-title h1 {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--navy-blue);
-    }
-
+    .header-title h1 { font-size: 1.35rem; font-weight: 800; color: var(--navy-blue); }
     .user-pill {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: white;
-      padding: 8px 16px;
-      border-radius: 30px;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-      font-weight: 600;
-      font-size: 0.88rem;
+      display: flex; align-items: center; gap: 12px; background: white;
+      padding: 8px 16px; border-radius: 30px; border: 1px solid var(--border-color); font-weight: 600; font-size: 0.88rem;
     }
 
-    .content-body {
-      padding: 36px;
-      flex: 1;
+    .content-body { padding: 36px; flex: 1; }
+
+    /* VISUAL ALUR FLOWCHART 3D */
+    .flow-container {
+      background: white; border-radius: 20px; padding: 24px; border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-3d); margin-bottom: 32px;
     }
 
-    /* 3D Dashboard Cards */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-      margin-bottom: 32px;
+    .flow-title { font-size: 1.05rem; font-weight: 700; color: var(--navy-blue); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+
+    .flow-diagram {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
     }
 
+    .flow-card {
+      flex: 1; min-width: 180px; background: #F8FAFC; border-radius: 16px; padding: 20px;
+      border: 1.5px solid var(--border-color); text-align: center; position: relative; transition: all 0.3s ease;
+    }
+
+    .flow-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover-3d); }
+    .flow-card.in { border-color: var(--success); background: #F0FDF4; }
+    .flow-card.stock { border-color: var(--royal-blue); background: #EFF6FF; }
+    .flow-card.out { border-color: var(--purple); background: #F3E8FF; }
+
+    .flow-icon {
+      width: 42px; height: 42px; border-radius: 12px; margin: 0 auto 12px;
+      display: flex; align-items: center; justify-content: center; color: white;
+    }
+
+    .flow-card.in .flow-icon { background: var(--success); }
+    .flow-card.stock .flow-icon { background: var(--royal-blue); }
+    .flow-card.out .flow-icon { background: var(--purple); }
+
+    .flow-arrow { color: #94A3B8; display: flex; align-items: center; justify-content: center; }
+
+    /* STATS & CARDS */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 32px; }
     .stat-card-3d {
-      background: white;
-      border-radius: 20px;
-      padding: 24px;
-      border: 1px solid rgba(226, 232, 240, 0.8);
-      box-shadow: var(--shadow-3d);
-      transition: all 0.35s ease;
-      position: relative;
-      overflow: hidden;
+      background: white; border-radius: 20px; padding: 24px; border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: var(--shadow-3d); transition: all 0.35s ease;
     }
 
-    .stat-card-3d:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-hover-3d);
-      border-color: rgba(37, 99, 235, 0.3);
-    }
-
-    .stat-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-
+    .stat-card-3d:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover-3d); }
+    .stat-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
     .stat-icon.blue { background: #EFF6FF; color: var(--royal-blue); }
     .stat-icon.purple { background: #F3E8FF; color: var(--purple); }
     .stat-icon.green { background: #ECFDF5; color: var(--success); }
     .stat-icon.orange { background: #FFF7ED; color: var(--warning); }
 
-    .stat-label {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: #64748B;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    .stat-label { font-size: 0.82rem; font-weight: 700; color: #64748B; text-transform: uppercase; }
+    .stat-value { font-size: 2rem; font-weight: 800; color: var(--navy-blue); margin-top: 6px; }
+
+    .dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+    .card-box { background: white; border-radius: 20px; padding: 28px; border: 1px solid var(--border-color); box-shadow: var(--shadow-3d); }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .card-title { font-size: 1.05rem; font-weight: 700; color: var(--navy-blue); }
+
+    /* TABLES & BADGES */
+    .table-responsive { overflow-x: auto; }
+    .data-table { width: 100%; border-collapse: separate; border-spacing: 0; text-align: left; }
+    .data-table th { background: #F8FAFC; padding: 14px 18px; font-size: 0.78rem; font-weight: 700; color: #475569; text-transform: uppercase; border-bottom: 1px solid var(--border-color); }
+    .data-table td { padding: 16px 18px; border-bottom: 1px solid #F1F5F9; font-size: 0.9rem; color: #334155; }
+    .data-table tr:hover td { background: #F8FAFC; }
+
+    .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; display: inline-block; }
+    .badge-success { background: #ECFDF5; color: var(--success); }
+    .badge-warning { background: #FEF3C7; color: var(--warning); }
+    .badge-danger { background: #FEE2E2; color: var(--danger); }
+
+    /* MODAL POPUP FORM */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; z-index: 100; opacity: 0; pointer-events: none; transition: all 0.3s ease;
     }
 
-    .stat-value {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--navy-blue);
-      margin-top: 6px;
+    .modal-overlay.show { opacity: 1; pointer-events: auto; }
+    .modal-card {
+      background: white; border-radius: 24px; padding: 32px; width: 100%; max-width: 520px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); transform: scale(0.9); transition: all 0.3s ease;
     }
 
-    /* Charts & Cards Wrapper */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 24px;
-    }
+    .modal-overlay.show .modal-card { transform: scale(1); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .modal-title { font-size: 1.2rem; font-weight: 800; color: var(--navy-blue); }
+    .close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748B; }
 
-    .card-box {
-      background: white;
-      border-radius: 20px;
-      padding: 28px;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--shadow-3d);
-    }
-
-    .card-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--navy-blue);
-      margin-bottom: 20px;
-    }
-
-    /* Tables */
-    .table-responsive {
-      overflow-x: auto;
-    }
-
-    .data-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      text-align: left;
-    }
-
-    .data-table th {
-      background: #F8FAFC;
-      padding: 14px 18px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #475569;
-      text-transform: uppercase;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .data-table td {
-      padding: 16px 18px;
-      border-bottom: 1px solid #F1F5F9;
-      font-size: 0.9rem;
-      color: #334155;
-    }
-
-    .data-table tr:hover td {
-      background: #F8FAFC;
-    }
-
-    .badge {
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      background: #ECFDF5;
-      color: var(--success);
-    }
-
-    /* Utility */
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
 
     @media (max-width: 900px) {
       .dashboard-grid { grid-template-columns: 1fr; }
+      .flow-diagram { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); margin: 8px 0; }
       .sidebar { width: 80px; }
       .sidebar-brand span, .nav-item span { display: none; }
       .nav-item { justify-content: center; }
@@ -430,9 +246,7 @@
 </head>
 <body>
 
-  <!-- =========================================================
-       1. HALAMAN LOGIN (ANIMATED GLASSMORPHISM 3D)
-       ========================================================= -->
+  <!-- 1. HALAMAN LOGIN -->
   <div id="loginPage" class="login-container">
     <div class="glass-login-card">
       <div class="brand-header">
@@ -452,7 +266,7 @@
           <label>Password</label>
           <input type="password" id="loginPass" class="input-control" placeholder="••••••••" required value="admin123">
         </div>
-        <button type="submit" id="btnLogin" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
           <span>Masuk Ke Dashboard</span>
           <i data-lucide="arrow-right" style="width: 18px;"></i>
         </button>
@@ -460,12 +274,10 @@
     </div>
   </div>
 
-  <!-- =========================================================
-       2. DASHBOARD UTAMA (SAAS MODERN LOGISTICS)
-       ========================================================= -->
+  <!-- 2. DASHBOARD UTAMA -->
   <div id="appPage" class="app-container hidden">
     
-    <!-- SIDEBAR NAVIGATION -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-brand">
         <div class="brand-icon-3d" style="width: 38px; height: 38px; border-radius: 10px; margin: 0;">
@@ -477,11 +289,11 @@
       <nav class="sidebar-nav">
         <a href="#" class="nav-item active" onclick="switchPage('dashboard', event)">
           <i data-lucide="layout-dashboard"></i>
-          <span>Dashboard</span>
+          <span>Dashboard & Alur</span>
         </a>
-        <a href="#" class="nav-item" onclick="switchPage('masterBarang', event)">
-          <i data-lucide="package"></i>
-          <span>Master Barang</span>
+        <a href="#" class="nav-item" onclick="switchPage('stokGudang', event)">
+          <i data-lucide="archive"></i>
+          <span>Stok Gudang</span>
         </a>
         <a href="#" class="nav-item" onclick="switchPage('barangMasuk', event)">
           <i data-lucide="arrow-down-left"></i>
@@ -490,10 +302,6 @@
         <a href="#" class="nav-item" onclick="switchPage('barangKeluar', event)">
           <i data-lucide="arrow-up-right"></i>
           <span>Barang Keluar</span>
-        </a>
-        <a href="#" class="nav-item" onclick="switchPage('stokGudang', event)">
-          <i data-lucide="archive"></i>
-          <span>Stok Gudang</span>
         </a>
         <a href="#" class="nav-item" style="margin-top: auto;" onclick="logout(event)">
           <i data-lucide="log-out"></i>
@@ -505,91 +313,118 @@
     <!-- MAIN CONTENT -->
     <main class="main-content">
       
-      <!-- TOP HEADER -->
+      <!-- HEADER -->
       <header class="header-bar">
         <div class="header-title">
-          <h1 id="pageTitle">Dashboard Ringkasan</h1>
+          <h1 id="pageTitle">Dashboard & Visual Alur Transaksi</h1>
         </div>
         <div class="user-pill">
           <i data-lucide="user-check" style="color: var(--royal-blue); width: 18px;"></i>
-          <span id="userInfo">Administrator (Admin)</span>
+          <span>Admin Gudang</span>
         </div>
       </header>
 
-      <!-- BODY VIEWS -->
+      <!-- CONTENT BODY -->
       <div class="content-body">
         
         <!-- MODULE: DASHBOARD -->
         <section id="viewDashboard" class="page-view">
-          <!-- 3D STATS CARDS -->
+          
+          <!-- VISUAL ALUR PENERIMAAN & PENGELUARAN (FLOWCHART LOGO) -->
+          <div class="flow-container">
+            <div class="flow-title">
+              <i data-lucide="git-merge" style="color: var(--royal-blue);"></i>
+              <span>Diagram Alur Pergerakan Barang Real-time</span>
+            </div>
+            
+            <div class="flow-diagram">
+              <!-- Flow In -->
+              <div class="flow-card in">
+                <div class="flow-icon"><i data-lucide="truck"></i></div>
+                <div style="font-size: 0.8rem; font-weight:700; color:#059669;">PEMASUKAN</div>
+                <div style="font-size: 1.4rem; font-weight:800; margin: 4px 0;" id="flowMasukQty">+1,250</div>
+                <div style="font-size: 0.75rem; color:#64748B;">Penerimaan Supplier</div>
+              </div>
+
+              <div class="flow-arrow"><i data-lucide="chevron-right" style="width: 32px; height: 32px;"></i></div>
+
+              <!-- Flow Stock -->
+              <div class="flow-card stock">
+                <div class="flow-icon"><i data-lucide="warehouse"></i></div>
+                <div style="font-size: 0.8rem; font-weight:700; color:var(--royal-blue);">STOK TERSEDIA</div>
+                <div style="font-size: 1.4rem; font-weight:800; margin: 4px 0;" id="flowStokTotal">8,450</div>
+                <div style="font-size: 0.75rem; color:#64748B;">Total Dalam Rak</div>
+              </div>
+
+              <div class="flow-arrow"><i data-lucide="chevron-right" style="width: 32px; height: 32px;"></i></div>
+
+              <!-- Flow Out -->
+              <div class="flow-card out">
+                <div class="flow-icon"><i data-lucide="package-check"></i></div>
+                <div style="font-size: 0.8rem; font-weight:700; color:var(--purple);">PENGELUARAN</div>
+                <div style="font-size: 1.4rem; font-weight:800; margin: 4px 0;" id="flowKeluarQty">-980</div>
+                <div style="font-size: 0.75rem; color:#64748B;">Pengiriman Customer</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STATS GRID -->
           <div class="stats-grid">
             <div class="stat-card-3d">
               <div class="stat-icon blue"><i data-lucide="layers"></i></div>
               <div class="stat-label">Total SKU</div>
-              <div class="stat-value" id="statTotalSKU">124</div>
+              <div class="stat-value" id="statSKU">3 SKU</div>
             </div>
 
             <div class="stat-card-3d">
-              <div class="stat-icon purple"><i data-lucide="boxes"></i></div>
-              <div class="stat-label">Total Stok Barang</div>
-              <div class="stat-value" id="statTotalStok">8,450</div>
+              <div class="stat-icon green"><i data-lucide="arrow-down-left"></i></div>
+              <div class="stat-label">Total Barang Masuk</div>
+              <div class="stat-value" id="statTotalMasuk">1,250</div>
             </div>
 
             <div class="stat-card-3d">
-              <div class="stat-icon green"><i data-lucide="arrow-down-right"></i></div>
-              <div class="stat-label">Barang Masuk (Bln Ini)</div>
-              <div class="stat-value" id="statBarangMasuk">1,200</div>
+              <div class="stat-icon purple"><i data-lucide="arrow-up-right"></i></div>
+              <div class="stat-label">Total Barang Keluar</div>
+              <div class="stat-value" id="statTotalKeluar">980</div>
             </div>
 
             <div class="stat-card-3d">
-              <div class="stat-icon orange"><i data-lucide="arrow-up-right"></i></div>
-              <div class="stat-label">Barang Keluar (Bln Ini)</div>
-              <div class="stat-value" id="statBarangKeluar">980</div>
+              <div class="stat-icon orange"><i data-lucide="alert-triangle"></i></div>
+              <div class="stat-label">Stok Menipis</div>
+              <div class="stat-value" id="statMenipis">1 SKU</div>
             </div>
           </div>
 
-          <!-- CHART & ACTIVITY -->
+          <!-- CHART & ACTION BUTTONS -->
           <div class="dashboard-grid">
             <div class="card-box">
-              <div class="card-title">Grafik Pergerakan Barang</div>
-              <div style="height: 300px;">
+              <div class="card-header">
+                <div class="card-title">Grafik Perbandingan Transaksi</div>
+                <div>
+                  <button class="btn btn-success" onclick="openModal('modalMasuk')"><i data-lucide="plus"></i> Input Masuk</button>
+                  <button class="btn btn-danger" onclick="openModal('modalKeluar')"><i data-lucide="minus"></i> Input Keluar</button>
+                </div>
+              </div>
+              <div style="height: 280px;">
                 <canvas id="movementChart"></canvas>
               </div>
             </div>
 
             <div class="card-box">
-              <div class="card-title">Stok Menipis (Alert)</div>
-              <div class="table-responsive">
-                <table class="data-table">
-                  <thead>
-                    <tr>
-                      <th>SKU</th>
-                      <th>Barang</th>
-                      <th>Sisa</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><b>SKU-002</b></td>
-                      <td>Kardus Box B</td>
-                      <td><span style="color: var(--danger); font-weight:700;">5 Pcs</span></td>
-                    </tr>
-                    <tr>
-                      <td><b>SKU-009</b></td>
-                      <td>Bubble Wrap 50m</td>
-                      <td><span style="color: var(--warning); font-weight:700;">12 Roll</span></td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="card-title">Ringkasan Persentase</div>
+              <div style="height: 280px;">
+                <canvas id="pieChart"></canvas>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- MODULE: MASTER BARANG -->
-        <section id="viewMasterBarang" class="page-view hidden">
+        <!-- MODULE: STOK GUDANG -->
+        <section id="viewStokGudang" class="page-view hidden">
           <div class="card-box">
-            <div class="card-title">Daftar Master Barang</div>
+            <div class="card-header">
+              <div class="card-title">Tabel Stok Barang Real-time</div>
+            </div>
             <div class="table-responsive">
               <table class="data-table">
                 <thead>
@@ -599,26 +434,66 @@
                     <th>Kategori</th>
                     <th>Lokasi Rak</th>
                     <th>Stok Min</th>
+                    <th>Stok Sekarang</th>
                     <th>Status</th>
                   </tr>
                 </thead>
-                <tbody id="tableMasterBarang">
+                <tbody id="tableStokBody">
+                  <!-- Generated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- MODULE: TRANSAKSI BARANG MASUK -->
+        <section id="viewBarangMasuk" class="page-view hidden">
+          <div class="card-box">
+            <div class="card-header">
+              <div class="card-title">Riwayat Barang Masuk (Inbound)</div>
+              <button class="btn btn-success" onclick="openModal('modalMasuk')"><i data-lucide="plus"></i> Tambah Barang Masuk</button>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
                   <tr>
-                    <td><b>SKU-1001</b></td>
-                    <td>Kardus Master Box L</td>
-                    <td>Packaging</td>
-                    <td>Rak A-01</td>
-                    <td>50</td>
-                    <td><span class="badge">Aktif</span></td>
+                    <th>No. Transaksi</th>
+                    <th>Tanggal</th>
+                    <th>SKU / Barang</th>
+                    <th>Jumlah</th>
+                    <th>Supplier</th>
+                    <th>Petugas</th>
                   </tr>
+                </thead>
+                <tbody id="tableMasukBody">
+                  <!-- Generated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- MODULE: TRANSAKSI BARANG KELUAR -->
+        <section id="viewBarangKeluar" class="page-view hidden">
+          <div class="card-box">
+            <div class="card-header">
+              <div class="card-title">Riwayat Barang Keluar (Outbound)</div>
+              <button class="btn btn-danger" onclick="openModal('modalKeluar')"><i data-lucide="minus"></i> Tambah Barang Keluar</button>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
                   <tr>
-                    <td><b>SKU-1002</b></td>
-                    <td>Lakban Bening 90 Yard</td>
-                    <td>Consumable</td>
-                    <td>Rak B-02</td>
-                    <td>20</td>
-                    <td><span class="badge">Aktif</span></td>
+                    <th>No. Transaksi</th>
+                    <th>Tanggal</th>
+                    <th>SKU / Barang</th>
+                    <th>Jumlah</th>
+                    <th>Customer / Tujuan</th>
+                    <th>Petugas</th>
                   </tr>
+                </thead>
+                <tbody id="tableKeluarBody">
+                  <!-- Generated by JS -->
                 </tbody>
               </table>
             </div>
@@ -630,96 +505,327 @@
   </div>
 
   <!-- =========================================================
-       3. JAVASCRIPT LOGIC ENGINE
+       MODAL FORM INPUT BARANG MASUK
        ========================================================= -->
+  <div id="modalMasuk" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" style="color: var(--success); display:flex; align-items:center; gap:8px;">
+          <i data-lucide="arrow-down-left"></i> Input Barang Masuk
+        </div>
+        <button class="close-btn" onclick="closeModal('modalMasuk')">&times;</button>
+      </div>
+      <form id="formInputMasuk">
+        <div class="form-group">
+          <label>Pilih Barang (SKU)</label>
+          <select id="inMasukSKU" class="input-control" required>
+            <!-- Options generated by JS -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Jumlah Masuk</label>
+          <input type="number" id="inMasukQty" class="input-control" min="1" placeholder="Misal: 100" required>
+        </div>
+        <div class="form-group">
+          <label>Nama Supplier</label>
+          <input type="text" id="inMasukSupplier" class="input-control" placeholder="PT Supplier Logistik" required>
+        </div>
+        <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 10px;">Simpan Transaksi Masuk</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL FORM INPUT BARANG KELUAR
+       ========================================================= -->
+  <div id="modalKeluar" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" style="color: var(--danger); display:flex; align-items:center; gap:8px;">
+          <i data-lucide="arrow-up-right"></i> Input Barang Keluar
+        </div>
+        <button class="close-btn" onclick="closeModal('modalKeluar')">&times;</button>
+      </div>
+      <form id="formInputKeluar">
+        <div class="form-group">
+          <label>Pilih Barang (SKU)</label>
+          <select id="inKeluarSKU" class="input-control" required>
+            <!-- Options generated by JS -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Jumlah Keluar</label>
+          <input type="number" id="inKeluarQty" class="input-control" min="1" placeholder="Misal: 50" required>
+        </div>
+        <div class="form-group">
+          <label>Customer / Departemen Tujuan</label>
+          <input type="text" id="inKeluarCustomer" class="input-control" placeholder="PT Toko Maju Sejahtera" required>
+        </div>
+        <button type="submit" class="btn btn-danger" style="width: 100%; margin-top: 10px;">Simpan Transaksi Keluar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT ENGINE -->
   <script>
-    // Inisialisasi Ikon Lucide
+    // DATA DATABASE LOCALSTORAGE (SIMULASI AUTOMATION)
+    let inventoryData = [
+      { sku: "SKU-1001", name: "Kardus Master Box L", category: "Packaging", location: "Rak A-01", minStock: 50, stock: 5200 },
+      { sku: "SKU-1002", name: "Lakban Bening 90Y", category: "Consumable", location: "Rak B-02", minStock: 30, stock: 3200 },
+      { sku: "SKU-1003", name: "Bubble Wrap 50 Meter", category: "Protection", location: "Rak C-01", minStock: 100, stock: 50 }
+    ];
+
+    let historyMasuk = [
+      { id: "IN-20261018-01", date: "2026-10-18", sku: "SKU-1001", name: "Kardus Master Box L", qty: 1000, supplier: "PT Indopack Jaya", user: "Admin" },
+      { id: "IN-20261018-02", date: "2026-10-18", sku: "SKU-1002", name: "Lakban Bening 90Y", qty: 250, supplier: "PT Tape Solution", user: "Admin" }
+    ];
+
+    let historyKeluar = [
+      { id: "OUT-20261018-01", date: "2026-10-18", sku: "SKU-1001", name: "Kardus Master Box L", qty: 800, customer: "PT Toko Olshop", user: "Admin" },
+      { id: "OUT-20261018-02", date: "2026-10-18", sku: "SKU-1002", name: "Lakban Bening 90Y", qty: 180, customer: "UD Makmur Jaya", user: "Admin" }
+    ];
+
+    let barChartInstance = null;
+    let pieChartInstance = null;
+
     document.addEventListener("DOMContentLoaded", () => {
       lucide.createIcons();
-      initChart();
+      updateDashboardData();
+      renderTables();
+      populateDropdowns();
     });
 
-    // Handle Login Submit
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
+    // LOGIN & LOGOUT
+    document.getElementById("loginForm").addEventListener("submit", (e) => {
       e.preventDefault();
-      
-      // Animasi transisi masuk
       document.getElementById("loginPage").classList.add("hidden");
       document.getElementById("appPage").classList.remove("hidden");
-      
-      // Refresh re-render Chart setelah unhide
-      setTimeout(() => {
-        initChart();
-      }, 100);
+      setTimeout(() => { renderCharts(); }, 100);
     });
 
-    // Handle Logout
     function logout(e) {
       if(e) e.preventDefault();
       document.getElementById("appPage").classList.add("hidden");
       document.getElementById("loginPage").classList.remove("hidden");
     }
 
-    // Switch Single Page App Views
+    // SWITCH PAGE
     function switchPage(pageName, event) {
       if(event) event.preventDefault();
-      
-      // Hide All Views
       document.querySelectorAll(".page-view").forEach(el => el.classList.add("hidden"));
       document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
       
-      // Highlight Nav & Show Active Page
       if (pageName === 'dashboard') {
         document.getElementById("viewDashboard").classList.remove("hidden");
-        document.getElementById("pageTitle").innerText = "Dashboard Ringkasan";
-        event.currentTarget.classList.add("active");
-      } else if (pageName === 'masterBarang') {
-        document.getElementById("viewMasterBarang").classList.remove("hidden");
-        document.getElementById("pageTitle").innerText = "Master Data Barang";
-        event.currentTarget.classList.add("active");
+        document.getElementById("pageTitle").innerText = "Dashboard & Visual Alur Transaksi";
+      } else if (pageName === 'stokGudang') {
+        document.getElementById("viewStokGudang").classList.remove("hidden");
+        document.getElementById("pageTitle").innerText = "Stok Gudang Real-time";
+      } else if (pageName === 'barangMasuk') {
+        document.getElementById("viewBarangMasuk").classList.remove("hidden");
+        document.getElementById("pageTitle").innerText = "Barang Masuk (Inbound Transaction)";
+      } else if (pageName === 'barangKeluar') {
+        document.getElementById("viewBarangKeluar").classList.remove("hidden");
+        document.getElementById("pageTitle").innerText = "Barang Keluar (Outbound Transaction)";
       }
+      
+      if(event && event.currentTarget) event.currentTarget.classList.add("active");
     }
 
-    // Chart.js Configuration
-    let chartInstance = null;
-    function initChart() {
-      const ctx = document.getElementById('movementChart');
-      if(!ctx) return;
-      
-      if (chartInstance) {
-        chartInstance.destroy();
-      }
+    // MODAL CONTROL
+    function openModal(id) { document.getElementById(id).classList.add("show"); }
+    function closeModal(id) { document.getElementById(id).classList.remove("show"); }
 
-      chartInstance = new Chart(ctx, {
+    // POPULATE DROPDOWNS
+    function populateDropdowns() {
+      const inSelect = document.getElementById("inMasukSKU");
+      const outSelect = document.getElementById("inKeluarSKU");
+      
+      inSelect.innerHTML = "";
+      outSelect.innerHTML = "";
+
+      inventoryData.forEach(item => {
+        inSelect.innerHTML += `<option value="${item.sku}">${item.sku} - ${item.name} (Stok: ${item.stock})</option>`;
+        outSelect.innerHTML += `<option value="${item.sku}">${item.sku} - ${item.name} (Stok: ${item.stock})</option>`;
+      });
+    }
+
+    // TRANSAKSI BARANG MASUK (SUBMIT)
+    document.getElementById("formInputMasuk").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const sku = document.getElementById("inMasukSKU").value;
+      const qty = parseInt(document.getElementById("inMasukQty").value);
+      const supplier = document.getElementById("inMasukSupplier").value;
+
+      const item = inventoryData.find(x => x.sku === sku);
+      if (item) {
+        item.stock += qty;
+        
+        historyMasuk.unshift({
+          id: "IN-" + Date.now().toString().slice(-6),
+          date: new Date().toISOString().split('T')[0],
+          sku: item.sku,
+          name: item.name,
+          qty: qty,
+          supplier: supplier,
+          user: "Admin"
+        });
+
+        updateDashboardData();
+        renderTables();
+        populateDropdowns();
+        closeModal('modalMasuk');
+        e.target.reset();
+        alert("Pemasukan barang berhasil disimpan!");
+      }
+    });
+
+    // TRANSAKSI BARANG KELUAR (SUBMIT)
+    document.getElementById("formInputKeluar").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const sku = document.getElementById("inKeluarSKU").value;
+      const qty = parseInt(document.getElementById("inKeluarQty").value);
+      const customer = document.getElementById("inKeluarCustomer").value;
+
+      const item = inventoryData.find(x => x.sku === sku);
+      if (item) {
+        if (item.stock < qty) {
+          alert("Gagal! Stok barang tidak mencukupi untuk dikeluarkan.");
+          return;
+        }
+
+        item.stock -= qty;
+        
+        historyKeluar.unshift({
+          id: "OUT-" + Date.now().toString().slice(-6),
+          date: new Date().toISOString().split('T')[0],
+          sku: item.sku,
+          name: item.name,
+          qty: qty,
+          customer: customer,
+          user: "Admin"
+        });
+
+        updateDashboardData();
+        renderTables();
+        populateDropdowns();
+        closeModal('modalKeluar');
+        e.target.reset();
+        alert("Pengeluaran barang berhasil disimpan!");
+      }
+    });
+
+    // REKALKULASI DASHBOARD & FLOWCHART
+    function updateDashboardData() {
+      let totalStock = inventoryData.reduce((acc, curr) => acc + curr.stock, 0);
+      let totalMasuk = historyMasuk.reduce((acc, curr) => acc + curr.qty, 0);
+      let totalKeluar = historyKeluar.reduce((acc, curr) => acc + curr.qty, 0);
+      let menipisCount = inventoryData.filter(x => x.stock <= x.minStock).length;
+
+      // Update Flowchart Diagram
+      document.getElementById("flowMasukQty").innerText = "+" + totalMasuk.toLocaleString();
+      document.getElementById("flowStokTotal").innerText = totalStock.toLocaleString();
+      document.getElementById("flowKeluarQty").innerText = "-" + totalKeluar.toLocaleString();
+
+      // Update Stats Cards
+      document.getElementById("statSKU").innerText = inventoryData.length + " SKU";
+      document.getElementById("statTotalMasuk").innerText = totalMasuk.toLocaleString();
+      document.getElementById("statTotalKeluar").innerText = totalKeluar.toLocaleString();
+      document.getElementById("statMenipis").innerText = menipisCount + " SKU";
+
+      renderCharts();
+    }
+
+    // RENDER TABLES
+    function renderTables() {
+      // Table Stok
+      const tbodyStok = document.getElementById("tableStokBody");
+      tbodyStok.innerHTML = "";
+      inventoryData.forEach(item => {
+        let isDanger = item.stock <= item.minStock;
+        tbodyStok.innerHTML += `
+          <tr>
+            <td><b>${item.sku}</b></td>
+            <td>${item.name}</td>
+            <td>${item.category}</td>
+            <td>${item.location}</td>
+            <td>${item.minStock} Pcs</td>
+            <td><b>${item.stock.toLocaleString()} Pcs</b></td>
+            <td>
+              <span class="badge ${isDanger ? 'badge-danger' : 'badge-success'}">
+                ${isDanger ? 'Menipis' : 'Aman'}
+              </span>
+            </td>
+          </tr>
+        `;
+      });
+
+      // Table Masuk
+      const tbodyMasuk = document.getElementById("tableMasukBody");
+      tbodyMasuk.innerHTML = "";
+      historyMasuk.forEach(item => {
+        tbodyMasuk.innerHTML += `
+          <tr>
+            <td><b>${item.id}</b></td>
+            <td>${item.date}</td>
+            <td>${item.name} (${item.sku})</td>
+            <td><b style="color:var(--success);">+${item.qty}</b></td>
+            <td>${item.supplier}</td>
+            <td>${item.user}</td>
+          </tr>
+        `;
+      });
+
+      // Table Keluar
+      const tbodyKeluar = document.getElementById("tableKeluarBody");
+      tbodyKeluar.innerHTML = "";
+      historyKeluar.forEach(item => {
+        tbodyKeluar.innerHTML += `
+          <tr>
+            <td><b>${item.id}</b></td>
+            <td>${item.date}</td>
+            <td>${item.name} (${item.sku})</td>
+            <td><b style="color:var(--danger);">-${item.qty}</b></td>
+            <td>${item.customer}</td>
+            <td>${item.user}</td>
+          </tr>
+        `;
+      });
+    }
+
+    // RENDER CHARTS
+    function renderCharts() {
+      let totalMasuk = historyMasuk.reduce((acc, curr) => acc + curr.qty, 0);
+      let totalKeluar = historyKeluar.reduce((acc, curr) => acc + curr.qty, 0);
+
+      // Bar Chart
+      const ctxBar = document.getElementById('movementChart');
+      if (barChartInstance) barChartInstance.destroy();
+      barChartInstance = new Chart(ctxBar, {
         type: 'bar',
         data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+          labels: ['Total Transaksi Logistik'],
           datasets: [
-            {
-              label: 'Barang Masuk',
-              data: [420, 590, 800, 810, 560, 1200],
-              backgroundColor: '#2563EB',
-              borderRadius: 8
-            },
-            {
-              label: 'Barang Keluar',
-              data: [300, 450, 620, 700, 480, 980],
-              backgroundColor: '#7C3AED',
-              borderRadius: 8
-            }
+            { label: 'Pemasukan (In)', data: [totalMasuk], backgroundColor: '#10B981', borderRadius: 8 },
+            { label: 'Pengeluaran (Out)', data: [totalKeluar], backgroundColor: '#7C3AED', borderRadius: 8 }
           ]
         },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom' }
-          },
-          scales: {
-            y: { grid: { color: '#F1F5F9' } },
-            x: { grid: { display: false } }
-          }
-        }
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+
+      // Pie Chart
+      const ctxPie = document.getElementById('pieChart');
+      if (pieChartInstance) pieChartInstance.destroy();
+      pieChartInstance = new Chart(ctxPie, {
+        type: 'doughnut',
+        data: {
+          labels: ['Masuk', 'Keluar'],
+          datasets: [{
+            data: [totalMasuk, totalKeluar],
+            backgroundColor: ['#10B981', '#7C3AED']
+          }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
       });
     }
   </script>
