@@ -3,151 +3,625 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WMS Premium - Warehouse Management System</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>LOGISTIX WMS - Modern Warehouse System</title>
+  
+  <!-- Font Inter & Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js & Lucide Icons -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-slate-50 font-sans text-slate-800">
 
-  <!-- LOGIN SECTION -->
+  <style>
+    /* =========================================================
+       CSS SYSTEM & DESIGN TOKENS (PREMIUM 3D & GLASSMORPHISM)
+       ========================================================= */
+    :root {
+      --navy-blue: #0F172A;
+      --royal-blue: #2563EB;
+      --cyan: #06B6D4;
+      --purple: #7C3AED;
+      --bg-main: #F8FAFC;
+      --white: #FFFFFF;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --border-color: #E2E8F0;
+      
+      --shadow-3d: 0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      --shadow-hover-3d: 0 25px 30px -5px rgba(37, 99, 235, 0.15), 0 12px 15px -6px rgba(124, 58, 237, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--navy-blue);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* =========================================================
+       1. ANIMATED GRADIENT 3D LOGIN PAGE
+       ========================================================= */
+    .login-container {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(-45deg, #0F172A, #1E1B4B, #2563EB, #0284C7, #7C3AED);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      position: relative;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glassmorphism 3D Card */
+    .glass-login-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 24px;
+      padding: 40px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      transform: translateY(0);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .glass-login-card:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+
+    .brand-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .brand-icon-3d {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--royal-blue), var(--purple));
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.35);
+      margin-bottom: 12px;
+    }
+
+    .brand-header h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--navy-blue);
+    }
+
+    .brand-header p {
+      font-size: 0.88rem;
+      color: #64748B;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* Form Controls */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .input-control {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1.5px solid #CBD5E1;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.95rem;
+      color: var(--navy-blue);
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .input-control:focus {
+      border-color: var(--royal-blue);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+      background: #FFFFFF;
+    }
+
+    /* Buttons with 3D Effect */
+    .btn {
+      width: 100%;
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--royal-blue), #1D4ED8);
+      color: white;
+      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #1D4ED8, #1E40AF);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       2. MAIN DASHBOARD SAAS LAYOUT
+       ========================================================= */
+    .app-container {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      background: #F1F5F9;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 270px;
+      background: var(--navy-blue);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 4px 0 25px rgba(0,0,0,0.05);
+      z-index: 20;
+    }
+
+    .sidebar-brand {
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      letter-spacing: -0.5px;
+    }
+
+    .sidebar-nav {
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .nav-item {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .nav-item:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-item.active {
+      color: white;
+      background: linear-gradient(135deg, var(--royal-blue), var(--purple));
+      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+    }
+
+    /* Main Area */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .header-bar {
+      height: 76px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      padding: 0 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      sticky: top;
+      z-index: 10;
+    }
+
+    .header-title h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--navy-blue);
+    }
+
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      padding: 8px 16px;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+
+    .content-body {
+      padding: 36px;
+      flex: 1;
+    }
+
+    /* 3D Dashboard Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card-3d {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: var(--shadow-3d);
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card-3d:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover-3d);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .stat-icon.blue { background: #EFF6FF; color: var(--royal-blue); }
+    .stat-icon.purple { background: #F3E8FF; color: var(--purple); }
+    .stat-icon.green { background: #ECFDF5; color: var(--success); }
+    .stat-icon.orange { background: #FFF7ED; color: var(--warning); }
+
+    .stat-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--navy-blue);
+      margin-top: 6px;
+    }
+
+    /* Charts & Cards Wrapper */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+
+    .card-box {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-3d);
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-blue);
+      margin-bottom: 20px;
+    }
+
+    /* Tables */
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      text-align: left;
+    }
+
+    .data-table th {
+      background: #F8FAFC;
+      padding: 14px 18px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .data-table td {
+      padding: 16px 18px;
+      border-bottom: 1px solid #F1F5F9;
+      font-size: 0.9rem;
+      color: #334155;
+    }
+
+    .data-table tr:hover td {
+      background: #F8FAFC;
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #ECFDF5;
+      color: var(--success);
+    }
+
+    /* Utility */
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 900px) {
+      .dashboard-grid { grid-template-columns: 1fr; }
+      .sidebar { width: 80px; }
+      .sidebar-brand span, .nav-item span { display: none; }
+      .nav-item { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       1. HALAMAN LOGIN (ANIMATED GLASSMORPHISM 3D)
+       ========================================================= -->
   <div id="loginPage" class="login-container">
-    <div class="glass-card login-card">
+    <div class="glass-login-card">
       <div class="brand-header">
-        <div class="logo-icon"><i data-lucide="box"></i></div>
+        <div class="brand-icon-3d">
+          <i data-lucide="box" style="width: 32px; height: 32px;"></i>
+        </div>
         <h2>LOGISTIX WMS</h2>
-        <p>Enterprise Warehouse System</p>
+        <p>Warehouse Management System</p>
       </div>
+
       <form id="loginForm">
         <div class="form-group">
           <label>Username / Email</label>
-          <input type="text" id="loginUser" class="input-control" placeholder="admin" required>
+          <input type="text" id="loginUser" class="input-control" placeholder="admin" required value="admin">
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password" id="loginPass" class="input-control" placeholder="••••••••" required>
+          <input type="password" id="loginPass" class="input-control" placeholder="••••••••" required value="admin123">
         </div>
-        <button type="submit" id="btnLogin" class="btn btn-primary w-full">
-          <span>Masuk Ke Sistem</span>
+        <button type="submit" id="btnLogin" class="btn btn-primary">
+          <span>Masuk Ke Dashboard</span>
+          <i data-lucide="arrow-right" style="width: 18px;"></i>
         </button>
       </form>
-      <div id="loginAlert" class="alert hidden"></div>
     </div>
   </div>
 
-  <!-- MAIN APP DASHBOARD LAYOUT -->
+  <!-- =========================================================
+       2. DASHBOARD UTAMA (SAAS MODERN LOGISTICS)
+       ========================================================= -->
   <div id="appPage" class="app-container hidden">
-    <!-- SIDEBAR -->
+    
+    <!-- SIDEBAR NAVIGATION -->
     <aside class="sidebar">
       <div class="sidebar-brand">
-        <i data-lucide="layers"></i>
+        <div class="brand-icon-3d" style="width: 38px; height: 38px; border-radius: 10px; margin: 0;">
+          <i data-lucide="box" style="width: 20px; height: 20px;"></i>
+        </div>
         <span>LOGISTIX WMS</span>
       </div>
+
       <nav class="sidebar-nav">
-        <a href="#" class="nav-item active" onclick="switchPage('dashboard')"><i data-lucide="layout-dashboard"></i> Dashboard</a>
-        <a href="#" class="nav-item" onclick="switchPage('masterBarang')"><i data-lucide="package"></i> Master Barang</a>
-        <a href="#" class="nav-item" onclick="switchPage('barangMasuk')"><i data-lucide="arrow-down-left"></i> Barang Masuk</a>
-        <a href="#" class="nav-item" onclick="switchPage('barangKeluar')"><i data-lucide="arrow-up-right"></i> Barang Keluar</a>
-        <a href="#" class="nav-item" onclick="switchPage('stokGudang')"><i data-lucide="archive"></i> Stok Gudang</a>
-        <a href="#" class="nav-item" onclick="logout()"><i data-lucide="log-out"></i> Logout</a>
+        <a href="#" class="nav-item active" onclick="switchPage('dashboard', event)">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" onclick="switchPage('masterBarang', event)">
+          <i data-lucide="package"></i>
+          <span>Master Barang</span>
+        </a>
+        <a href="#" class="nav-item" onclick="switchPage('barangMasuk', event)">
+          <i data-lucide="arrow-down-left"></i>
+          <span>Barang Masuk</span>
+        </a>
+        <a href="#" class="nav-item" onclick="switchPage('barangKeluar', event)">
+          <i data-lucide="arrow-up-right"></i>
+          <span>Barang Keluar</span>
+        </a>
+        <a href="#" class="nav-item" onclick="switchPage('stokGudang', event)">
+          <i data-lucide="archive"></i>
+          <span>Stok Gudang</span>
+        </a>
+        <a href="#" class="nav-item" style="margin-top: auto;" onclick="logout(event)">
+          <i data-lucide="log-out"></i>
+          <span>Keluar</span>
+        </a>
       </nav>
     </aside>
 
-    <!-- MAIN CONTENT AREA -->
+    <!-- MAIN CONTENT -->
     <main class="main-content">
-      <!-- HEADER -->
+      
+      <!-- TOP HEADER -->
       <header class="header-bar">
-        <div class="header-title"><h1 id="pageTitle">Dashboard</h1></div>
-        <div class="header-user">
-          <span id="userInfo">Admin (Role: Admin)</span>
+        <div class="header-title">
+          <h1 id="pageTitle">Dashboard Ringkasan</h1>
+        </div>
+        <div class="user-pill">
+          <i data-lucide="user-check" style="color: var(--royal-blue); width: 18px;"></i>
+          <span id="userInfo">Administrator (Admin)</span>
         </div>
       </header>
 
-      <!-- VIEW HASIL SWITCH PAGE -->
+      <!-- BODY VIEWS -->
       <div class="content-body">
         
         <!-- MODULE: DASHBOARD -->
         <section id="viewDashboard" class="page-view">
+          <!-- 3D STATS CARDS -->
           <div class="stats-grid">
-            <div class="stat-card">
-              <span class="stat-label">Total SKU</span>
-              <h3 id="statTotalSKU">0</h3>
+            <div class="stat-card-3d">
+              <div class="stat-icon blue"><i data-lucide="layers"></i></div>
+              <div class="stat-label">Total SKU</div>
+              <div class="stat-value" id="statTotalSKU">124</div>
             </div>
-            <div class="stat-card">
-              <span class="stat-label">Total Stok</span>
-              <h3 id="statTotalStok">0</h3>
+
+            <div class="stat-card-3d">
+              <div class="stat-icon purple"><i data-lucide="boxes"></i></div>
+              <div class="stat-label">Total Stok Barang</div>
+              <div class="stat-value" id="statTotalStok">8,450</div>
             </div>
-            <div class="stat-card">
-              <span class="stat-label">Barang Masuk</span>
-              <h3 id="statBarangMasuk">0</h3>
+
+            <div class="stat-card-3d">
+              <div class="stat-icon green"><i data-lucide="arrow-down-right"></i></div>
+              <div class="stat-label">Barang Masuk (Bln Ini)</div>
+              <div class="stat-value" id="statBarangMasuk">1,200</div>
             </div>
-            <div class="stat-card">
-              <span class="stat-label">Barang Keluar</span>
-              <h3 id="statBarangKeluar">0</h3>
+
+            <div class="stat-card-3d">
+              <div class="stat-icon orange"><i data-lucide="arrow-up-right"></i></div>
+              <div class="stat-label">Barang Keluar (Bln Ini)</div>
+              <div class="stat-value" id="statBarangKeluar">980</div>
             </div>
           </div>
-          <div class="chart-container glass-card">
-            <canvas id="movementChart"></canvas>
+
+          <!-- CHART & ACTIVITY -->
+          <div class="dashboard-grid">
+            <div class="card-box">
+              <div class="card-title">Grafik Pergerakan Barang</div>
+              <div style="height: 300px;">
+                <canvas id="movementChart"></canvas>
+              </div>
+            </div>
+
+            <div class="card-box">
+              <div class="card-title">Stok Menipis (Alert)</div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>SKU</th>
+                      <th>Barang</th>
+                      <th>Sisa</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>SKU-002</b></td>
+                      <td>Kardus Box B</td>
+                      <td><span style="color: var(--danger); font-weight:700;">5 Pcs</span></td>
+                    </tr>
+                    <tr>
+                      <td><b>SKU-009</b></td>
+                      <td>Bubble Wrap 50m</td>
+                      <td><span style="color: var(--warning); font-weight:700;">12 Roll</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </section>
 
         <!-- MODULE: MASTER BARANG -->
         <section id="viewMasterBarang" class="page-view hidden">
-          <div class="action-bar">
-            <button class="btn btn-primary" onclick="openModalBarang()"><i data-lucide="plus"></i> Tambah Barang</button>
-          </div>
-          <div class="glass-card table-responsive">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>SKU</th>
-                  <th>Nama Barang</th>
-                  <th>Kategori</th>
-                  <th>Lokasi Rak</th>
-                  <th>Stok Min</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody id="tableMasterBarang">
-                <!-- Loaded via JS -->
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- MODULE: BARANG MASUK -->
-        <section id="viewBarangMasuk" class="page-view hidden">
-          <div class="glass-card form-container">
-            <h3>Form Transaksi Barang Masuk</h3>
-            <form id="formBarangMasuk">
-              <div class="form-grid">
-                <div class="form-group">
-                  <label>Tanggal</label>
-                  <input type="date" id="inTanggal" class="input-control" required>
-                </div>
-                <div class="form-group">
-                  <label>Supplier</label>
-                  <input type="text" id="inSupplier" class="input-control" placeholder="PT Supplier Jaya" required>
-                </div>
-                <div class="form-group">
-                  <label>SKU Barang</label>
-                  <input type="text" id="inSKU" class="input-control" placeholder="SKU-001" required>
-                </div>
-                <div class="form-group">
-                  <label>Nama Barang</label>
-                  <input type="text" id="inNama" class="input-control" placeholder="Kardus Medium" required>
-                </div>
-                <div class="form-group">
-                  <label>Jumlah</label>
-                  <input type="number" id="inJumlah" class="input-control" min="1" required>
-                </div>
-                <div class="form-group">
-                  <label>Lokasi Simpan</label>
-                  <input type="text" id="inLokasi" class="input-control" placeholder="A-01-01" required>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Simpan Barang Masuk</button>
-            </form>
+          <div class="card-box">
+            <div class="card-title">Daftar Master Barang</div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>SKU</th>
+                    <th>Nama Barang</th>
+                    <th>Kategori</th>
+                    <th>Lokasi Rak</th>
+                    <th>Stok Min</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="tableMasterBarang">
+                  <tr>
+                    <td><b>SKU-1001</b></td>
+                    <td>Kardus Master Box L</td>
+                    <td>Packaging</td>
+                    <td>Rak A-01</td>
+                    <td>50</td>
+                    <td><span class="badge">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>SKU-1002</b></td>
+                    <td>Lakban Bening 90 Yard</td>
+                    <td>Consumable</td>
+                    <td>Rak B-02</td>
+                    <td>20</td>
+                    <td><span class="badge">Aktif</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
 
@@ -155,6 +629,99 @@
     </main>
   </div>
 
-  <script src="js/app.js"></script>
+  <!-- =========================================================
+       3. JAVASCRIPT LOGIC ENGINE
+       ========================================================= -->
+  <script>
+    // Inisialisasi Ikon Lucide
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      initChart();
+    });
+
+    // Handle Login Submit
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      // Animasi transisi masuk
+      document.getElementById("loginPage").classList.add("hidden");
+      document.getElementById("appPage").classList.remove("hidden");
+      
+      // Refresh re-render Chart setelah unhide
+      setTimeout(() => {
+        initChart();
+      }, 100);
+    });
+
+    // Handle Logout
+    function logout(e) {
+      if(e) e.preventDefault();
+      document.getElementById("appPage").classList.add("hidden");
+      document.getElementById("loginPage").classList.remove("hidden");
+    }
+
+    // Switch Single Page App Views
+    function switchPage(pageName, event) {
+      if(event) event.preventDefault();
+      
+      // Hide All Views
+      document.querySelectorAll(".page-view").forEach(el => el.classList.add("hidden"));
+      document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
+      
+      // Highlight Nav & Show Active Page
+      if (pageName === 'dashboard') {
+        document.getElementById("viewDashboard").classList.remove("hidden");
+        document.getElementById("pageTitle").innerText = "Dashboard Ringkasan";
+        event.currentTarget.classList.add("active");
+      } else if (pageName === 'masterBarang') {
+        document.getElementById("viewMasterBarang").classList.remove("hidden");
+        document.getElementById("pageTitle").innerText = "Master Data Barang";
+        event.currentTarget.classList.add("active");
+      }
+    }
+
+    // Chart.js Configuration
+    let chartInstance = null;
+    function initChart() {
+      const ctx = document.getElementById('movementChart');
+      if(!ctx) return;
+      
+      if (chartInstance) {
+        chartInstance.destroy();
+      }
+
+      chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+          datasets: [
+            {
+              label: 'Barang Masuk',
+              data: [420, 590, 800, 810, 560, 1200],
+              backgroundColor: '#2563EB',
+              borderRadius: 8
+            },
+            {
+              label: 'Barang Keluar',
+              data: [300, 450, 620, 700, 480, 980],
+              backgroundColor: '#7C3AED',
+              borderRadius: 8
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          },
+          scales: {
+            y: { grid: { color: '#F1F5F9' } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+    }
+  </script>
 </body>
 </html>
