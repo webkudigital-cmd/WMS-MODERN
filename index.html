@@ -1,38 +1,3 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbzypfsVa8lxWZCCX1d-9KQWhFC2DyeuIzj9fWdK2_5g0hCSkkdSMXblVeJk0htxb7H1jw/exec"; // Masukkan URL Google Apps Script di sini
-
-// MENGIRIM DATA BARANG MASUK KE GOOGLE SHEETS
-document.getElementById("formInputMasuk").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  
-  const payload = {
-    sku: document.getElementById("inMasukSKU").value,
-    jumlah: parseInt(document.getElementById("inMasukQty").value),
-    supplier: document.getElementById("inMasukSupplier").value,
-    tanggal: new Date().toISOString().split('T')[0]
-  };
-
-  try {
-    const response = await fetch(API_URL, {
-      method: "POST",
-      body: JSON.stringify({
-        action: "createBarangMasuk",
-        payload: payload,
-        user: { username: "Admin", role: "Admin" }
-      })
-    });
-    
-    const res = await response.json();
-    if(res.success) {
-      alert("Berhasil! Data tersimpan di Google Sheets.");
-      closeModal('modalMasuk');
-      location.reload(); // Refresh untuk mengambil stok terbaru dari Sheets
-    } else {
-      alert("Gagal menyimpan: " + res.message);
-    }
-  } catch (err) {
-    alert("Error koneksi ke Google Sheets");
-  }
-});
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -601,9 +566,14 @@ document.getElementById("formInputMasuk").addEventListener("submit", async (e) =
     </div>
   </div>
 
-  <!-- JAVASCRIPT ENGINE -->
+  <!-- =========================================================
+       3. JAVASCRIPT LOGIC ENGINE
+       ========================================================= -->
   <script>
-    // DATA DATABASE LOCALSTORAGE (SIMULASI AUTOMATION)
+    // URL GOOGLE APPS SCRIPT BACKEND API
+    const API_URL = "https://script.google.com/macros/s/AKfycbzypfsVa8lxWZCCX1d-9KQWhFC2DyeuIzj9fWdK2_5g0hCSkkdSMXblVeJk0htxb7H1jw/exec";
+
+    // DATA DATABASE LOCAL
     let inventoryData = [
       { sku: "SKU-1001", name: "Kardus Master Box L", category: "Packaging", location: "Rak A-01", minStock: 50, stock: 5200 },
       { sku: "SKU-1002", name: "Lakban Bening 90Y", category: "Consumable", location: "Rak B-02", minStock: 30, stock: 3200 },
@@ -685,8 +655,8 @@ document.getElementById("formInputMasuk").addEventListener("submit", async (e) =
       });
     }
 
-    // TRANSAKSI BARANG MASUK (SUBMIT)
-    document.getElementById("formInputMasuk").addEventListener("submit", (e) => {
+    // TRANSAKSI BARANG MASUK (SUBMIT GOOGLE SHEETS & LOCAL)
+    document.getElementById("formInputMasuk").addEventListener("submit", async (e) => {
       e.preventDefault();
       const sku = document.getElementById("inMasukSKU").value;
       const qty = parseInt(document.getElementById("inMasukQty").value);
@@ -706,6 +676,18 @@ document.getElementById("formInputMasuk").addEventListener("submit", async (e) =
           user: "Admin"
         });
 
+        // Kirim ke Google Sheets
+        try {
+          fetch(API_URL, {
+            method: "POST",
+            body: JSON.stringify({
+              action: "createBarangMasuk",
+              payload: { sku, namaBarang: item.name, jumlah: qty, supplier, tanggal: new Date().toISOString().split('T')[0], lokasi: item.location },
+              user: { username: "Admin", role: "Admin" }
+            })
+          });
+        } catch (err) { console.error("Kirim data ke Google Sheets gagal:", err); }
+
         updateDashboardData();
         renderTables();
         populateDropdowns();
@@ -715,8 +697,8 @@ document.getElementById("formInputMasuk").addEventListener("submit", async (e) =
       }
     });
 
-    // TRANSAKSI BARANG KELUAR (SUBMIT)
-    document.getElementById("formInputKeluar").addEventListener("submit", (e) => {
+    // TRANSAKSI BARANG KELUAR (SUBMIT GOOGLE SHEETS & LOCAL)
+    document.getElementById("formInputKeluar").addEventListener("submit", async (e) => {
       e.preventDefault();
       const sku = document.getElementById("inKeluarSKU").value;
       const qty = parseInt(document.getElementById("inKeluarQty").value);
@@ -740,6 +722,18 @@ document.getElementById("formInputMasuk").addEventListener("submit", async (e) =
           customer: customer,
           user: "Admin"
         });
+
+        // Kirim ke Google Sheets
+        try {
+          fetch(API_URL, {
+            method: "POST",
+            body: JSON.stringify({
+              action: "createBarangKeluar",
+              payload: { sku, namaBarang: item.name, jumlah: qty, customer, tanggal: new Date().toISOString().split('T')[0], lokasi: item.location },
+              user: { username: "Admin", role: "Admin" }
+            })
+          });
+        } catch (err) { console.error("Kirim data ke Google Sheets gagal:", err); }
 
         updateDashboardData();
         renderTables();
@@ -864,50 +858,5 @@ document.getElementById("formInputMasuk").addEventListener("submit", async (e) =
       });
     }
   </script>
-</body>
-</html>
-<!-- BAGIAN AKHIR FILE index.html -->
-
-  <!-- 1. Tag Pembuka JavaScript -->
-  <script>
-    // MASUKKAN URL APPS SCRIPT ANDA DI SINI
-    const API_URL = "https://script.google.com/macros/s/AKfycbzypfsVa8lxWZCCX1d-9KQWhFC2DyeuIzj9fWdK2_5g0hCSkkdSMXblVeJk0htxb7H1jw/exec";
-
-    // MENGIRIM DATA BARANG MASUK KE GOOGLE SHEETS
-    document.getElementById("formInputMasuk").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      
-      const payload = {
-        sku: document.getElementById("inMasukSKU").value,
-        jumlah: parseInt(document.getElementById("inMasukQty").value),
-        supplier: document.getElementById("inMasukSupplier").value,
-        tanggal: new Date().toISOString().split('T')[0]
-      };
-
-      try {
-        const response = await fetch(API_URL, {
-          method: "POST",
-          body: JSON.stringify({
-            action: "createBarangMasuk",
-            payload: payload,
-            user: { username: "Admin", role: "Admin" }
-          })
-        });
-        
-        const res = await response.json();
-        if(res.success) {
-          alert("Berhasil! Data tersimpan di Google Sheets.");
-          closeModal('modalMasuk');
-          location.reload();
-        } else {
-          alert("Gagal menyimpan: " + res.message);
-        }
-      } catch (err) {
-        alert("Error koneksi ke Google Sheets");
-      }
-    });
-  </script>
-  <!-- 2. Tag Penutup JavaScript -->
-
 </body>
 </html>
