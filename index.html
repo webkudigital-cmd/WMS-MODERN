@@ -866,3 +866,48 @@ document.getElementById("formInputMasuk").addEventListener("submit", async (e) =
   </script>
 </body>
 </html>
+<!-- BAGIAN AKHIR FILE index.html -->
+
+  <!-- 1. Tag Pembuka JavaScript -->
+  <script>
+    // MASUKKAN URL APPS SCRIPT ANDA DI SINI
+    const API_URL = "https://script.google.com/macros/s/AKfycbzypfsVa8lxWZCCX1d-9KQWhFC2DyeuIzj9fWdK2_5g0hCSkkdSMXblVeJk0htxb7H1jw/exec";
+
+    // MENGIRIM DATA BARANG MASUK KE GOOGLE SHEETS
+    document.getElementById("formInputMasuk").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const payload = {
+        sku: document.getElementById("inMasukSKU").value,
+        jumlah: parseInt(document.getElementById("inMasukQty").value),
+        supplier: document.getElementById("inMasukSupplier").value,
+        tanggal: new Date().toISOString().split('T')[0]
+      };
+
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          body: JSON.stringify({
+            action: "createBarangMasuk",
+            payload: payload,
+            user: { username: "Admin", role: "Admin" }
+          })
+        });
+        
+        const res = await response.json();
+        if(res.success) {
+          alert("Berhasil! Data tersimpan di Google Sheets.");
+          closeModal('modalMasuk');
+          location.reload();
+        } else {
+          alert("Gagal menyimpan: " + res.message);
+        }
+      } catch (err) {
+        alert("Error koneksi ke Google Sheets");
+      }
+    });
+  </script>
+  <!-- 2. Tag Penutup JavaScript -->
+
+</body>
+</html>
