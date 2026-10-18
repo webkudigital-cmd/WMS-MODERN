@@ -504,9 +504,7 @@
     </main>
   </div>
 
-  <!-- =========================================================
-       MODAL FORM INPUT BARANG MASUK
-       ========================================================= -->
+  <!-- MODAL FORM INPUT BARANG MASUK -->
   <div id="modalMasuk" class="modal-overlay">
     <div class="modal-card">
       <div class="modal-header">
@@ -535,9 +533,7 @@
     </div>
   </div>
 
-  <!-- =========================================================
-       MODAL FORM INPUT BARANG KELUAR
-       ========================================================= -->
+  <!-- MODAL FORM INPUT BARANG KELUAR -->
   <div id="modalKeluar" class="modal-overlay">
     <div class="modal-card">
       <div class="modal-header">
@@ -566,9 +562,7 @@
     </div>
   </div>
 
-  <!-- =========================================================
-       3. JAVASCRIPT LOGIC ENGINE
-       ========================================================= -->
+  <!-- JAVASCRIPT LOGIC ENGINE -->
   <script>
     // URL GOOGLE APPS SCRIPT BACKEND API
     const API_URL = "https://script.google.com/macros/s/AKfycbzypfsVa8lxWZCCX1d-9KQWhFC2DyeuIzj9fWdK2_5g0hCSkkdSMXblVeJk0htxb7H1jw/exec";
@@ -655,7 +649,7 @@
       });
     }
 
-    // TRANSAKSI BARANG MASUK (SUBMIT GOOGLE SHEETS & LOCAL)
+    // TRANSAKSI BARANG MASUK
     document.getElementById("formInputMasuk").addEventListener("submit", async (e) => {
       e.preventDefault();
       const sku = document.getElementById("inMasukSKU").value;
@@ -676,13 +670,14 @@
           user: "Admin"
         });
 
-        // Kirim ke Google Sheets
+        // Send to Google Sheets
         try {
           fetch(API_URL, {
             method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
             body: JSON.stringify({
               action: "createBarangMasuk",
-              payload: { sku, namaBarang: item.name, jumlah: qty, supplier, tanggal: new Date().toISOString().split('T')[0], lokasi: item.location },
+              payload: { sku: sku, namaBarang: item.name, jumlah: qty, supplier: supplier, tanggal: new Date().toISOString().split('T')[0], lokasi: item.location },
               user: { username: "Admin", role: "Admin" }
             })
           });
@@ -697,7 +692,7 @@
       }
     });
 
-    // TRANSAKSI BARANG KELUAR (SUBMIT GOOGLE SHEETS & LOCAL)
+    // TRANSAKSI BARANG KELUAR
     document.getElementById("formInputKeluar").addEventListener("submit", async (e) => {
       e.preventDefault();
       const sku = document.getElementById("inKeluarSKU").value;
@@ -723,13 +718,14 @@
           user: "Admin"
         });
 
-        // Kirim ke Google Sheets
+        // Send to Google Sheets
         try {
           fetch(API_URL, {
             method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
             body: JSON.stringify({
               action: "createBarangKeluar",
-              payload: { sku, namaBarang: item.name, jumlah: qty, customer, tanggal: new Date().toISOString().split('T')[0], lokasi: item.location },
+              payload: { sku: sku, namaBarang: item.name, jumlah: qty, customer: customer, tanggal: new Date().toISOString().split('T')[0], lokasi: item.location },
               user: { username: "Admin", role: "Admin" }
             })
           });
@@ -744,19 +740,17 @@
       }
     });
 
-    // REKALKULASI DASHBOARD & FLOWCHART
+    // REKALKULASI DASHBOARD
     function updateDashboardData() {
       let totalStock = inventoryData.reduce((acc, curr) => acc + curr.stock, 0);
       let totalMasuk = historyMasuk.reduce((acc, curr) => acc + curr.qty, 0);
       let totalKeluar = historyKeluar.reduce((acc, curr) => acc + curr.qty, 0);
       let menipisCount = inventoryData.filter(x => x.stock <= x.minStock).length;
 
-      // Update Flowchart Diagram
       document.getElementById("flowMasukQty").innerText = "+" + totalMasuk.toLocaleString();
       document.getElementById("flowStokTotal").innerText = totalStock.toLocaleString();
       document.getElementById("flowKeluarQty").innerText = "-" + totalKeluar.toLocaleString();
 
-      // Update Stats Cards
       document.getElementById("statSKU").innerText = inventoryData.length + " SKU";
       document.getElementById("statTotalMasuk").innerText = totalMasuk.toLocaleString();
       document.getElementById("statTotalKeluar").innerText = totalKeluar.toLocaleString();
@@ -767,7 +761,6 @@
 
     // RENDER TABLES
     function renderTables() {
-      // Table Stok
       const tbodyStok = document.getElementById("tableStokBody");
       tbodyStok.innerHTML = "";
       inventoryData.forEach(item => {
@@ -789,7 +782,6 @@
         `;
       });
 
-      // Table Masuk
       const tbodyMasuk = document.getElementById("tableMasukBody");
       tbodyMasuk.innerHTML = "";
       historyMasuk.forEach(item => {
@@ -805,7 +797,6 @@
         `;
       });
 
-      // Table Keluar
       const tbodyKeluar = document.getElementById("tableKeluarBody");
       tbodyKeluar.innerHTML = "";
       historyKeluar.forEach(item => {
@@ -827,7 +818,6 @@
       let totalMasuk = historyMasuk.reduce((acc, curr) => acc + curr.qty, 0);
       let totalKeluar = historyKeluar.reduce((acc, curr) => acc + curr.qty, 0);
 
-      // Bar Chart
       const ctxBar = document.getElementById('movementChart');
       if (barChartInstance) barChartInstance.destroy();
       barChartInstance = new Chart(ctxBar, {
@@ -842,7 +832,6 @@
         options: { responsive: true, maintainAspectRatio: false }
       });
 
-      // Pie Chart
       const ctxPie = document.getElementById('pieChart');
       if (pieChartInstance) pieChartInstance.destroy();
       pieChartInstance = new Chart(ctxPie, {
